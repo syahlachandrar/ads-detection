@@ -1,0 +1,348 @@
+:root {
+    --primary-color: #5C59C3;
+    --secndary-color: #EEEDEA;
+    --bg-color100: #2B2A52;
+    --bg-color85: rgba(43, 42, 82, 0.85);
+    --bg-color60: rgba(43, 42, 82, 0.6);
+}
+body{
+    width: 100%;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+}
+.navbar img {
+    width: 60px;
+    height: 54px;
+}
+
+.hero-section {
+    background-color: var(--bg-color85);
+    align-items: center;
+    padding-bottom: 50px;
+}
+.hero-tittle {
+    padding:70px 0px 45px 0px;
+}
+.hero-tittle h1 {
+    font-size: 2.75rem;
+    text-align: center;
+    color: white;
+}
+/*  */
+.btn-option {
+    margin: auto;
+    height: 40px;
+    width: 245px;
+    background-color: rgba(255, 255, 255, 0.3); /* Warna putih transparan dengan 30% opacity */
+    display: flex;
+    justify-content: center; /* Pusatkan elemen secara horizontal */
+    border-radius: 5px; /* Opsional, untuk sudut yang membulat */
+}
+.btn-link {
+    display: flex;
+    align-items: center; /* Pastikan gambar dan tombol sejajar vertikal */
+    justify-content: center;
+    position: relative;
+    margin: 6px;
+}
+.btn-link:not(:last-child) {
+    border-right: 1.5px solid rgba(255, 255, 255, 0.77); /* Garis vertikal antara dua button */
+    padding: 0 0px 0 0px;
+}
+button.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 19px 10px 9px;
+    font-size: medium;
+    background: none; /* Menghilangkan latar belakang tombol */
+    border: none; /* Menghilangkan border */
+    color: white; /* Warna teks putih */
+    cursor: pointer; /* Menambahkan kursor pointer saat hover */
+}
+button.btn1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+    font-size: medium;
+    background: none; /* Menghilangkan latar belakang tombol */
+    border: none; /* Menghilangkan border */
+    color: white; /* Warna teks putih */
+    cursor: pointer; /* Menambahkan kursor pointer saat hover */
+}
+
+button.btn img {
+    margin-right: 7px; /* Spasi antara ikon gambar dan teks tombol */
+    height: 20px; /* Sesuaikan ukuran ikon */
+    width: auto;
+    opacity: 0.5; /* Transparansi gambar 75% */
+}
+button.btn1 img {
+    margin-right: 10px; /* Spasi antara ikon gambar dan teks tombol */
+    height: 18px; /* Sesuaikan ukuran ikon */
+    width: auto;
+    opacity: 0.5; /* Transparansi gambar 75% */
+}
+/*  */
+.bg-form {
+    background-color: white;
+    height: 120px;
+    width: 600px;
+    margin: auto;
+    margin-top: 25px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.226);
+    align-items: center; /* Menyelaraskan secara vertikal ke tengah */
+    padding: 40px 30px;
+}
+.input-group {
+    border: 2px solid var(--primary-color); /* Border berwarna primary */
+    border-radius: 5px; /* Sudut membulat */
+    display: flex;
+    align-items: center; /* Menyelaraskan item secara vertikal */
+    overflow: hidden; /* Memastikan tombol dan input menyatu tanpa meluber */
+}
+.form-input {
+    flex: 1; /* Membuat input mengisi ruang yang tersisa */
+    border: none; /* Menghilangkan border default input */
+    padding: 10px;
+    font-size: 16px;
+    background-color: #EEEDEA; /* Background placeholder */
+    color: var(--secondary-color); /* Warna teks placeholder */
+    outline: none; /* Menghilangkan outline default saat fokus */
+}
+.form-input::placeholder {
+    color: var(--secondary-color); /* Warna teks placeholder */
+}
+.d-none {
+    display: none;
+}
+.btn-check {
+    background-color: var(--primary-color); /* Background button berwarna primary */
+    color: white; /* Warna teks button putih */
+    border: none; /* Menghilangkan border default button */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer; /* Menambahkan kursor pointer saat hover */
+    border-radius: 0; /* Menghilangkan sudut membulat pada button agar menyatu dengan input */
+}
+/*  */
+.desk-sistem {
+    display: flex; /* Menggunakan Flexbox untuk tata letak */
+    align-items: center; /* Menyelaraskan item secara vertikal ke tengah */
+    gap: 40px; /* Jarak antara teks dan gambar */
+    margin: 35px 120px;
+}
+
+.deskripsi {
+    flex: 1; /* Membuat kolom teks mengambil ruang yang tersisa */
+}
+
+.deskripsi h1 {
+    color: var(--bg-color100); /* Warna teks sesuai primary color */
+    margin-top: 20px;
+    margin-bottom: 10px; /* Spasi di bawah judul */
+    font-size: 2rem;
+}
+.deskripsi p {
+    color: var(--bg-color100); /* Warna teks paragraf sesuai primary color */
+    line-height: 1.6; /* Jarak antar baris untuk keterbacaan */
+    font-size: 16px; /* Ukuran font untuk paragraf */
+    margin-bottom: 20px;
+}
+img {
+    max-width: 100%; /* Memastikan gambar tidak melebihi lebar kolom */
+    height: auto; /* Memastikan gambar mempertahankan rasio aspek */
+}
+
+/*  */
+.sect-3 {
+    padding: 50px 150px;
+}
+.frame-sect-3 {
+    border: 3px solid var(--bg-color100); /* Border dengan warna primary */
+    border-radius: 10px; /* Membuat sedikit lengkungan pada sudut */
+    padding: 20px; /* Memberikan jarak di dalam frame */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Memberikan bayangan di bawah frame */
+    margin: 0 10px; /* Jarak vertikal di sekitar frame */
+}
+.frame-sect-3 h1 {
+    text-align: center;
+    color: var(--bg-color100);
+    margin: 30px 0;
+}
+
+.reason {
+    display: flex; /* Menggunakan Flexbox untuk tata letak horizontal */
+    align-items: center; /* Menyelaraskan konten secara vertikal ke tengah */
+    gap: 35px; /* Jarak antar kolom (gambar dan teks) */
+    margin: 10px 45px; /* Jarak antar baris */
+}
+
+.reason img{
+    max-width: 15%; /* Membatasi gambar agar tidak melebihi lebar kolom */
+    height: auto; /* Menjaga proporsi gambar */
+    flex: 1; /* Memberikan gambar fleksibilitas */
+}
+
+.reason-text{
+    flex: 2; /* Memberikan ruang lebih pada teks */
+    padding: 10px;
+}
+
+.reason-text h3 {
+    color: var(--bg-color100); /* Warna judul sesuai dengan primary color */
+    font-weight: bold; /* Membuat judul menjadi tebal */
+    margin-bottom: 10px;
+}
+
+.reason-text p {
+    color: var(--bg-color100);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/*  */
+.footer {
+    background-color: var(--bg-color100);
+    padding: 70px 0 70px 70px;
+}
+.footer-content {
+    display: flex; /* Menggunakan Flexbox untuk tata letak */
+    justify-content: space-between; /* Menyelaraskan konten kiri dan kanan dengan jarak */
+    align-items: center; /* Menyelaraskan konten secara vertikal di tengah */
+}
+
+.footer-left {
+    display: flex; /* Flexbox untuk menata gambar dan teks secara horizontal */
+    align-items: center; /* Menyelaraskan gambar dan teks secara vertikal */
+    gap: 20px; /* Jarak antara gambar dan teks */
+    position: relative; /* Dibutuhkan untuk posisi garis vertikal */
+}
+
+.footer-left img {
+    max-width: 8%; /* Memperkecil ukuran gambar */
+    height: auto; /* Menjaga rasio aspek gambar */
+    margin-right: 20px; /* Menambahkan jarak antara gambar dan garis vertikal */
+}
+
+.footer-left p {
+    color: white; /* Warna teks */
+    font-size: 14px; /* Ukuran font untuk teks di footer */
+    margin: 0;
+}
+
+.footer-left::after {
+    content: ''; /* Garis vertikal antara gambar dan teks */
+    position: absolute;
+    left: 90px; /* Menyesuaikan posisi garis vertikal */
+    top: 50%; /* Membuat garis di tengah */
+    transform: translateY(-50%); /* Agar benar-benar berada di tengah vertikal */
+    width: 1px;
+    height: 80px; /* Tinggi garis vertikal */
+    background-color: white; /* Warna garis */
+}
+
+.footer-right img {
+    max-width:7.5%; /* Ukuran gambar ikon di bagian kanan */
+    height: auto; /* Menjaga rasio aspek gambar */
+}
+
+.footer-right a {
+    margin-right: 15px; /* Jarak antar ikon */
+}
+
+.footer-right img {
+    transition: opacity 0.3s ease; /* Menambahkan efek transisi saat hover */
+}
+
+
+
+/* page hasil */
+.navbar-result {
+    display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+height: 60px;
+background-color: var(--bg-color85);
+}
+
+.navbar-result img {
+width: 60px;
+height: 54px;
+}
+.container-analysis {
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px 150px 80px 150px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.analysis-title {
+    text-align: center;
+    font-size: 30px;
+    color: var(--bg-color100); /* Primary color */
+    font-weight: bold;
+    margin: 35px 0;
+}
+
+.analysis-box {
+    border: 3px solid var(--bg-color100); /* Border with primary color */
+    border-radius: 8px;
+    padding: 30px 55px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.analysis-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.analysis-row {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+}
+
+.analysis-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--bg-color85); /* Primary color */
+    min-width: 150px; 
+    margin-right: 30px; /* Jarak antara label dan value */
+    white-space: nowrap;
+}
+
+.analysis-value {
+    font-size: 16px;
+    color: var(--bg-color85); 
+    flex-grow: 1; /* Value akan mengambil sisa ruang yang tersedia */
+    text-align: left;
+}
+
+.icon {
+    margin-left: 2px;
+    margin-right: 7px;
+    color: var(--bg-color100); /* Icon color same as primary color */
+}
+
+/* Engagement section styling */
+.analysis-value .icon img {
+    width: 16px;
+    vertical-align: middle;
+}

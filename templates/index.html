@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>IG ADS DETECTION</title>
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="navbar">
+        <img src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image" width="60" height="54">
+    </nav>
+
+    <!-- section 1 -->
+     <div class="hero-section container">
+        <div class="hero-tittle">
+            <h1>Nama Sistem</h1>
+        </div>
+
+        <div class="btn-option row align-items-center">
+            <div class="btn-link col"><button type="button" class="btn btn-secondary" id="btn-link"><img src="{{ url_for('static', filename='images/link-45deg.svg') }}" alt=""> Tautan</button>
+            </div>
+            <div class="btn-link col"><button type="button" class="btn1 btn-secondary" id="btn-image"><img src="{{ url_for('static', filename='images/image.svg') }}" alt=""> Gambar</button>
+            </div>
+        </div>
+
+        <div class="bg-form" id="form-link">
+            <form action="/hasil" method="post">
+                <div class="input-group">
+                    <input type="text" name="url" class="form-input" placeholder="masukkan tautan" required>
+                    <button type="submit" class="btn-check">check</button>
+                </div>
+            </form>
+        </div>
+        <div class="bg-form d-none" id="form-image">
+            <div class="input-group">
+                <input type="file" class="form-input" accept="image/*">
+                <button class="btn-check">check</button>
+            </div>
+        </div>
+     </div>
+
+     <!-- section 2 -->
+      <div class="desk-sistem row">
+        <div class="deskripsi col">
+            <h1 class="">Deskripsi Sistem</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <img class="col" src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image">
+      </div>
+
+    <!-- section 3 -->
+     <div class="sect-3">
+        <div class="frame-sect-3">
+            <h1>Kenapa Sistem Ini?</h1>
+            <div class="reason row">
+                <img class="col" src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image">
+                <div class="reason-text col">
+                    <h3>Lorem Ipsum</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                </div>
+            </div>
+            <div class="reason row">
+                <div class="reason-text col">
+                    <h3>Lorem Ipsum</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                </div>
+                <img class="col" src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image">
+            </div>
+            <div class="reason row">
+                <img class="col" src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image">
+                <div class="reason-text col">
+                    <h3>Lorem Ipsum</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                </div>
+            </div>
+        </div>
+     </div>
+
+     <!-- footer -->
+    <div class="footer">
+        <div class="footer-content row">
+            <div class="footer-left col row">
+                <img class="col" src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image">
+                <p class="col">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </div>
+            <div class="footer-right col mb-4">
+                <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button">
+                    <img src="{{ url_for('static', filename='images/email.png') }}"></img >
+                </a>
+                <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button">
+                    <img src="{{ url_for('static', filename='images/yt.png') }}"></img >
+                </a>
+                <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button">
+                    <img src="{{ url_for('static', filename='images/globe.png') }}"></img >
+                </a>
+                <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button">
+                    <img src="{{ url_for('static', filename='images/wa.png') }}"></img >
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var btnLink = document.querySelector('.btn');
+            var btnImage = document.querySelector('.btn1');
+            var formLink = document.getElementById('form-link');
+            var formImage = document.getElementById('form-image');
+    
+            btnLink.addEventListener('click', function() {
+                formLink.classList.remove('d-none');
+                formImage.classList.add('d-none');
+            });
+    
+            btnImage.addEventListener('click', function() {
+                formLink.classList.add('d-none');
+                formImage.classList.remove('d-none');
+            });
+        });
+    </script>
+    
+</body>
+</html>
