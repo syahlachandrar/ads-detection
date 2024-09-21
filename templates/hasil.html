@@ -53,16 +53,25 @@
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Engagement</strong></p>
                     <p class="analysis-value">
-                        {{ result['like_count'] }} <span class="icon"><img src="{{ url_for('static', filename='images/like.png') }}" alt=""></span>
-                        {{ result['comment_count'] }} <span class="icon"><img src="{{ url_for('static', filename='images/komen.png') }}" alt=""></span>
-                        {{ result['view_count'] }} <span class="icon"><img src="{{ url_for('static', filename='images/share.png') }}" alt=""></span>
-                    </p>
-                    
+                        {{ result['like_count'] }} 
+                        <span class="icon">
+                            <img src="{{ url_for('static', filename='images/like.png') }}" alt="">
+                        </span>
+                        {{ result['comment_count'] }} 
+                        <span class="icon">
+                            <img src="{{ url_for('static', filename='images/komen.png') }}" alt="">
+                        </span>
+                    </p>         
+                </div>
+                <div class="analysis-row">
+                    <p class="analysis-label"><strong>Predict Reach</strong></p>
+                    <p class="analysis-value">{{ predicted_reach }}</p>
                 </div>
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Performance</strong></p>
                     <p class="analysis-value">90%</p>
                 </div>
+                
             </div>
         </div>
     </div>

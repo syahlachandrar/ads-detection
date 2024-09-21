@@ -288,14 +288,14 @@ height: 54px;
 .container-analysis {
     width: 100%;
     margin: 0 auto;
-    padding: 15px 150px 80px 150px;
+    padding: 15px 170px 80px 170px;
     font-family: 'Poppins', sans-serif;
 }
 
 .analysis-title {
     text-align: center;
-    font-size: 30px;
-    color: var(--bg-color100); /* Primary color */
+    font-size: 35px;
+    color: var(--bg-color100); 
     font-weight: bold;
     margin: 35px 0;
 }
@@ -303,8 +303,8 @@ height: 54px;
 .analysis-box {
     border: 3px solid var(--bg-color100); /* Border with primary color */
     border-radius: 8px;
-    padding: 30px 55px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    padding: 32px 60px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
 }
 
 .analysis-content {
@@ -316,7 +316,7 @@ height: 54px;
 .analysis-row {
     display: flex;
     align-items: center;
-    padding: 5px 15px;
+    padding: 5px 20px;
 }
 
 .analysis-label {
@@ -344,5 +344,6 @@ height: 54px;
 /* Engagement section styling */
 .analysis-value .icon img {
     width: 16px;
-    vertical-align: middle;
+    /* vertical-align: middle; */
+    align-items: center;
 }
