@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="{{ url_for('static', filename='images/A.png') }}" alt="image">
+        {% if session.get('loggedin') %}
+            <a href="{{ url_for('auth.logout') }}" class="btn-logout my-2 my-sm-0"><i class="bi bi-box-arrow-right"></i></a>
+        {% else %}
+            <a href="{{ url_for('auth.registrasi') }}" class="btn-daftar my-2 my-sm-0">Daftar</a>
+        {% endif %}
+    </nav>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="content-sidebar col-auto col-md-3 col-xl-2 px-sm-2 px-0">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <h4 class="welcome d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline">Selamat Datang !</span>
+                    </h4>                    
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="{{ url_for('dashboard_pengguna') }}" class="nav-link align-middle px-0">
+                                <i class="bi bi-people"></i> <span class="ms-1 d-none d-sm-inline">Pengguna</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('dashboard_admin') }}" class="nav-link align-middle px-0">
+                                <i class="bi bi-person-gear"></i> <span class="ms-1 d-none d-sm-inline">Admin</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Content Section -->
+            <div class="col py-3">
+                <div class="row content-row">
+                    <div class="col-sm">
+                        <h3><i class="bi bi-people"></i><span id="title">{{ title }}</span></h3>
+                    </div>
+                    <div class="col-sm-auto ms-auto">
+                        <div class="input-group">
+                            <span class="input-group-text" id="search-addon">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="search" class="form-control-search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                        </div>
+                    </div>
+                    <div class="col-sm-auto">
+                        <a href="{{ url_for('add_user_route') }}" class="btn btn-add">+ Tambah</a>
+                    </div>
+                </div>
+
+                <!-- Tabel Data User -->
+                <div id="user-table-container">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            <tr>
+                                <td>{{ loop.index }}</td>  <!-- Menampilkan nomor urut yang otomatis increment -->
+                                <td>{{ user[1] }}</td> <!-- Menampilkan username -->
+                                <td>{{ user[2] }}</td> <!-- Menampilkan email -->
+                                <td class="btn-action">
+                                    <a href="{{ url_for('edit_user_route', user_id=user[0]) }}" class="btn-edit">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <form action="{{ url_for('delete_user_route', user_id=user[0]) }}" method="POST" style="display:inline;">
+                                        <button type="submit" class="btn-del" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?');">
+                                            <i class="bi bi-trash" style="color: red;"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

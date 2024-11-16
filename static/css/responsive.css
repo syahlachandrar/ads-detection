@@ -1,0 +1,511 @@
+/* Media query smartphone */
+@media (max-width: 768px) {
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: auto;
+        padding: 5px;
+        padding-right: 10px;
+    }
+    .navbar img {
+        width: 120px;
+        height: auto;
+    }
+    .btn-daftar {
+        background-color: var(--primary-color); 
+        color: white; 
+        border: none; 
+        padding: 5px 15px;
+        font-size: 14px;
+        cursor: pointer; 
+        border-radius: 5px; 
+    }
+    .hero-tittle {
+        padding: 40px 0px 20px 0px;
+    }
+    .hero-tittle h1 {
+        font-size: 1.5rem;
+    }
+    .bg-form {
+        background-color: white;
+        height: 70px;
+        width: 350px;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.226);
+        align-items: center; 
+        padding: 17px ;
+    }
+    .input-group {
+        border: 2px solid var(--primary-color); 
+        border-radius: 5px; 
+        display: flex;
+        align-items: center; 
+        overflow: hidden; 
+    }
+    .form-input {
+        flex: 1; 
+        border: none; 
+        padding: 8px;
+        font-size: 12px;
+        background-color: #EEEDEA;
+        color: var(--secondary-color); 
+        outline: none;
+    }
+    .form-input::placeholder {
+        color: var(--secondary-color); 
+    }
+    .d-none {
+        display: none;
+    }
+    .btn-check {
+        background-color: var(--primary-color); 
+        color: white; 
+        border: none; 
+        padding: 7px 14px;
+        font-size: 14px;
+        cursor: pointer; 
+        border-radius: 0; 
+    }
+    .desk-sistem {
+        flex-direction: column;
+        align-items: center; 
+        margin: 10px 30px;
+        gap: 0px;
+    }
+    
+    .deskripsi {
+        flex: 1; 
+    }
+    
+    .deskripsi h1 {
+        color: var(--bg-color100); /* Warna teks sesuai primary color */
+        margin-top: 20px;
+        margin-bottom: 8px; 
+        font-size: 1.5rem;
+    }
+    .deskripsi p {
+        color: var(--bg-color100); /* Warna teks paragraf sesuai primary color */
+        line-height: 1.5;
+        font-size: 12px; 
+        margin-bottom: 5px;
+        text-align: justify;
+    }
+    img {
+        max-width: 100%; /* Memastikan gambar tidak melebihi lebar kolom */
+        height: auto; /* Memastikan gambar mempertahankan rasio aspek */
+    }
+    .sect-3 {
+        padding: 10px ;
+    }
+    .frame-sect-3 {
+        border: 3px solid var(--bg-color100); /* Border dengan warna primary */
+        border-radius: 10px; /* Membuat sedikit lengkungan pada sudut */
+        padding: 15px; /* Memberikan jarak di dalam frame */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Memberikan bayangan di bawah frame */
+        margin: 0 10px; /* Jarak vertikal di sekitar frame */
+    }
+    .frame-sect-3 h1 {
+        text-align: center;
+        color: var(--bg-color100);
+        margin: 10px 0;
+    }
+    
+    .reason {
+        display: flex; /* Menggunakan Flexbox untuk tata letak horizontal */
+        align-items: center; /* Menyelaraskan konten secara vertikal ke tengah */
+        flex-direction: row;
+        gap: 5px; /* Jarak antar kolom (gambar dan teks) */
+        margin: 5px 15px; /* Jarak antar baris */
+    }
+    
+    .reason img{
+        max-width: 30%; 
+        height: auto; 
+        flex: 1; 
+    }
+    
+    .reason-text{
+        flex: 1; 
+        padding: 5px;
+    }
+    
+    .reason-text h3 {
+        color: var(--bg-color100); /* Warna judul sesuai dengan primary color */
+        font-weight: bold; /* Membuat judul menjadi tebal */
+        margin-bottom: 8px;
+    }
+    
+    .reason-text p {
+        color: var(--bg-color100);
+        font-size: 12px;
+        line-height: 1.5;
+        text-align: justify;
+    }
+    .footer {
+        background-color: var(--bg-color100);
+        padding: 10px;
+    }
+    .footer-content {
+        display: flex; 
+        flex-direction: column;
+        align-items: center; /* Menyelaraskan konten secara vertikal di tengah */
+    }
+    
+    .footer-left {
+        /* Flexbox untuk menata gambar dan teks secara horizontal */
+        align-items: center; /* Menyelaraskan gambar dan teks secara vertikal */
+        gap: 10px; /* Jarak antara gambar dan teks */
+         /* Dibutuhkan untuk posisi garis vertikal */
+    }
+    
+    .footer-left img {
+        max-width: 10%; /* Memperkecil ukuran gambar */
+        height: auto; /* Menjaga rasio aspek gambar */
+        margin-right: 10px; /* Menambahkan jarak antara gambar dan garis vertikal */
+    }
+    
+    .footer-left p {
+        color: white; /* Warna teks */
+        font-size: 12px; /* Ukuran font untuk teks di footer */
+        margin-bottom: 15px;
+    }
+    
+    .footer-left::after {
+        width: 0px;
+    }
+    
+    .footer-right img {
+        max-width:5%; /* Ukuran gambar ikon di bagian kanan */
+        height: auto; /* Menjaga rasio aspek gambar */
+    }
+    
+    .footer-right a {
+        margin-right: 15px; /* Jarak antar ikon */
+    }
+
+    /* result page */
+    .container-analysis {
+        width: 100%;
+        margin: 0 auto;
+        padding: 5px 10px ;
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 35px;
+    }
+    
+    .analysis-title {
+        text-align: center;
+        font-size: 1.5rem;
+        color: var(--bg-color100); 
+        font-weight: bold;
+        margin: 15px 0;
+    }
+    
+    .analysis-box {
+        border: 2px solid var(--bg-color100); /* Border with primary color */
+        border-radius: 8px;
+        padding: 8px 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        width: 100%;
+    }
+    
+    .analysis-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .analysis-row {
+        display: flex;
+        align-items: center;
+        padding: 2.5px ;
+    }
+    
+    .analysis-label {
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--bg-color85); /* Primary color */
+        min-width: 100px; 
+        margin-right: 10px; /* Jarak antara label dan value */
+        white-space: nowrap;
+    }
+    
+    .analysis-value {
+        font-size: 14px;
+        color: var(--bg-color85); 
+        text-align: left;
+    }
+    
+    .icon {
+        margin-left: 2px;
+        margin-right: 7px;
+        color: var(--bg-color100); /* Icon color same as primary color */
+    }
+    
+    /* Engagement section styling */
+    .analysis-value .icon img {
+        width: 12px;
+        /* vertical-align: middle; */
+        align-items: center;
+    }
+}
+
+/* Media query smartphone */
+@media (max-width: 480px) {
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: auto;
+        padding: 5px;
+        padding-right: 10px;
+    }
+    .navbar img {
+        width: 120px;
+        height: auto;
+    }
+    .btn-daftar {
+        background-color: var(--primary-color); 
+        color: white; 
+        border: none; 
+        padding: 5px 15px;
+        font-size: 14px;
+        cursor: pointer; 
+        border-radius: 5px; 
+
+    }
+    .btn-daftar:hover {
+        background-color: #a8b3ec; /* Warna saat hover */
+    }
+    .hero-tittle {
+        padding: 40px 0px 20px 0px;
+    }
+    .hero-tittle h1 {
+        font-size: 1.5rem;
+    }
+    .bg-form {
+        background-color: white;
+        height: 70px;
+        width: 350px;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.226);
+        align-items: center; 
+        padding: 17px ;
+    }
+    .input-group {
+        border: 2px solid var(--primary-color); 
+        border-radius: 5px; 
+        display: flex;
+        align-items: center; 
+        overflow: hidden; 
+    }
+    .form-input {
+        flex: 1; 
+        border: none; 
+        padding: 8px;
+        font-size: 12px;
+        background-color: #EEEDEA;
+        color: var(--secondary-color); 
+        outline: none;
+    }
+    .form-input::placeholder {
+        color: var(--secondary-color); 
+    }
+    .d-none {
+        display: none;
+    }
+    .btn-check {
+        background-color: var(--primary-color); 
+        color: white; 
+        border: none; 
+        padding: 7px 14px;
+        font-size: 14px;
+        cursor: pointer; 
+        border-radius: 0; 
+    }
+    .desk-sistem {
+        flex-direction: column;
+        align-items: center; 
+        margin: 10px 30px;
+        gap: 0px;
+    }
+    
+    .deskripsi {
+        flex: 1; 
+    }
+    
+    .deskripsi h1 {
+        color: var(--bg-color100); /* Warna teks sesuai primary color */
+        margin-top: 20px;
+        margin-bottom: 8px; 
+        font-size: 1.5rem;
+    }
+    .deskripsi p {
+        color: var(--bg-color100); /* Warna teks paragraf sesuai primary color */
+        line-height: 1.5;
+        font-size: 12px; 
+        margin-bottom: 5px;
+        text-align: justify;
+    }
+    img {
+        max-width: 100%; /* Memastikan gambar tidak melebihi lebar kolom */
+        height: auto; /* Memastikan gambar mempertahankan rasio aspek */
+    }
+    .sect-3 {
+        padding: 10px ;
+    }
+    .frame-sect-3 {
+        border: 3px solid var(--bg-color100); /* Border dengan warna primary */
+        border-radius: 10px; /* Membuat sedikit lengkungan pada sudut */
+        padding: 5px; /* Memberikan jarak di dalam frame */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Memberikan bayangan di bawah frame */
+        margin: 0 10px; /* Jarak vertikal di sekitar frame */
+    }
+    .frame-sect-3 h1 {
+        text-align: center;
+        color: var(--bg-color100);
+        margin: 10px 0;
+    }
+    
+    .reason {
+        display: flex; /* Menggunakan Flexbox untuk tata letak horizontal */
+        align-items: center; /* Menyelaraskan konten secara vertikal ke tengah */
+        flex-direction: column;
+        gap: 5px; /* Jarak antar kolom (gambar dan teks) */
+        margin: 5px 15px; /* Jarak antar baris */
+    }
+    
+    .reason img{
+        max-width: 40%; 
+        height: auto; 
+        flex: 1; 
+    }
+    
+    .reason-text{
+        flex: 1; 
+        padding: 5px;
+    }
+    
+    .reason-text h3 {
+        color: var(--bg-color100); /* Warna judul sesuai dengan primary color */
+        font-weight: bold; /* Membuat judul menjadi tebal */
+        margin-bottom: 8px;
+    }
+    
+    .reason-text p {
+        color: var(--bg-color100);
+        font-size: 12px;
+        line-height: 1.5;
+        text-align: justify;
+    }
+    .footer {
+        background-color: var(--bg-color100);
+        padding: 10px;
+    }
+    .footer-content {
+        display: flex; 
+        flex-direction: column;
+        align-items: center; /* Menyelaraskan konten secara vertikal di tengah */
+    }
+    
+    .footer-left {
+        /* Flexbox untuk menata gambar dan teks secara horizontal */
+        align-items: center; /* Menyelaraskan gambar dan teks secara vertikal */
+        gap: 10px; /* Jarak antara gambar dan teks */
+         /* Dibutuhkan untuk posisi garis vertikal */
+    }
+    
+    .footer-left img {
+        max-width: 10%; /* Memperkecil ukuran gambar */
+        height: auto; /* Menjaga rasio aspek gambar */
+        margin-right: 10px; /* Menambahkan jarak antara gambar dan garis vertikal */
+    }
+    
+    .footer-left p {
+        color: white; /* Warna teks */
+        font-size: 12px; /* Ukuran font untuk teks di footer */
+        margin-bottom: 15px;
+    }
+    
+    .footer-left::after {
+        width: 0px;
+    }
+    
+    .footer-right img {
+        max-width:5%; /* Ukuran gambar ikon di bagian kanan */
+        height: auto; /* Menjaga rasio aspek gambar */
+    }
+    
+    .footer-right a {
+        margin-right: 15px; /* Jarak antar ikon */
+    }
+
+    /* result page */
+    .container-analysis {
+        width: 100%;
+        margin: 0 auto;
+        padding: 5px 10px ;
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 35px;
+    }
+    
+    .analysis-title {
+        text-align: center;
+        font-size: 1.5rem;
+        color: var(--bg-color100); 
+        font-weight: bold;
+        margin: 15px 0;
+    }
+    
+    .analysis-box {
+        border: 2px solid var(--bg-color100); /* Border with primary color */
+        border-radius: 8px;
+        padding: 8px 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        width: 100%;
+    }
+    
+    .analysis-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .analysis-row {
+        display: flex;
+        align-items: center;
+        padding: 2.5px ;
+    }
+    
+    .analysis-label {
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--bg-color85); /* Primary color */
+        min-width: 100px; 
+        margin-right: 10px; /* Jarak antara label dan value */
+        white-space: nowrap;
+    }
+    
+    .analysis-value {
+        font-size: 14px;
+        color: var(--bg-color85); 
+        text-align: left;
+    }
+    
+    .icon {
+        margin-left: 2px;
+        margin-right: 7px;
+        color: var(--bg-color100); /* Icon color same as primary color */
+    }
+    
+    /* Engagement section styling */
+    .analysis-value .icon img {
+        width: 12px;
+        /* vertical-align: middle; */
+        align-items: center;
+    }
+}

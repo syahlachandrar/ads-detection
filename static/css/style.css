@@ -1,6 +1,6 @@
 :root {
     --primary-color: #5C59C3;
-    --secndary-color: #EEEDEA;
+    --secondary-color: #EEEDEA;
     --bg-color100: #2B2A52;
     --bg-color85: rgba(43, 42, 82, 0.85);
     --bg-color60: rgba(43, 42, 82, 0.6);
@@ -17,18 +17,36 @@ body{
 
 .navbar {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 60px;
+    background-color: var(--bg-color100);
+    padding-right: 10px;
 }
 .navbar img {
-    width: 60px;
-    height: 54px;
+    width: auto;
+    height: 50px;
+    align-items: center;
+}
+.btn-daftar {
+    background-color: var(--primary-color); 
+    color: white; 
+    border: none; 
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer; 
+    border-radius: 5px; 
+    text-decoration: none;
+    align-items: center;
+}
+.btn-daftar:hover {
+    background-color: #a8b3ec; /* Warna saat hover */
 }
 
 .hero-section {
-    background-color: var(--bg-color85);
+    background: linear-gradient(to bottom, #2B2A52, #a8b3ec);
     align-items: center;
     padding-bottom: 50px;
 }
@@ -41,24 +59,24 @@ body{
     color: white;
 }
 /*  */
-.btn-option {
+/* .btn-option {
     margin: auto;
     height: 40px;
     width: 245px;
-    background-color: rgba(255, 255, 255, 0.3); /* Warna putih transparan dengan 30% opacity */
+    background-color: rgba(255, 255, 255, 0.3); 
     display: flex;
-    justify-content: center; /* Pusatkan elemen secara horizontal */
-    border-radius: 5px; /* Opsional, untuk sudut yang membulat */
-}
-.btn-link {
+    justify-content: center; 
+    border-radius: 5px;
+} */
+/* .btn-link {
     display: flex;
-    align-items: center; /* Pastikan gambar dan tombol sejajar vertikal */
+    align-items: center; 
     justify-content: center;
     position: relative;
     margin: 6px;
 }
 .btn-link:not(:last-child) {
-    border-right: 1.5px solid rgba(255, 255, 255, 0.77); /* Garis vertikal antara dua button */
+    border-right: 1.5px solid rgba(255, 255, 255, 0.77); 
     padding: 0 0px 0 0px;
 }
 button.btn {
@@ -67,10 +85,10 @@ button.btn {
     justify-content: center;
     padding: 10px 19px 10px 9px;
     font-size: medium;
-    background: none; /* Menghilangkan latar belakang tombol */
-    border: none; /* Menghilangkan border */
-    color: white; /* Warna teks putih */
-    cursor: pointer; /* Menambahkan kursor pointer saat hover */
+    background: none;
+    border: none; 
+    color: white; 
+    cursor: pointer;
 }
 button.btn1 {
     display: flex;
@@ -78,31 +96,32 @@ button.btn1 {
     justify-content: center;
     padding: 10px 10px;
     font-size: medium;
-    background: none; /* Menghilangkan latar belakang tombol */
-    border: none; /* Menghilangkan border */
-    color: white; /* Warna teks putih */
-    cursor: pointer; /* Menambahkan kursor pointer saat hover */
+    background: none; 
+    border: none; 
+    color: white; 
+    cursor: pointer; 
 }
 
 button.btn img {
-    margin-right: 7px; /* Spasi antara ikon gambar dan teks tombol */
-    height: 20px; /* Sesuaikan ukuran ikon */
+    margin-right: 7px; 
+    height: 20px; 
     width: auto;
-    opacity: 0.5; /* Transparansi gambar 75% */
+    opacity: 0.5; 
 }
 button.btn1 img {
-    margin-right: 10px; /* Spasi antara ikon gambar dan teks tombol */
-    height: 18px; /* Sesuaikan ukuran ikon */
+    margin-right: 10px; 
+    height: 18px; 
     width: auto;
-    opacity: 0.5; /* Transparansi gambar 75% */
-}
+    opacity: 0.5; 
+} */
 /*  */
 .bg-form {
     background-color: white;
     height: 120px;
     width: 600px;
     margin: auto;
-    margin-top: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.226);
     align-items: center; /* Menyelaraskan secara vertikal ke tengah */
@@ -117,7 +136,7 @@ button.btn1 img {
 }
 .form-input {
     flex: 1; /* Membuat input mengisi ruang yang tersisa */
-    border: none; /* Menghilangkan border default input */
+    border: none; 
     padding: 10px;
     font-size: 16px;
     background-color: #EEEDEA; /* Background placeholder */

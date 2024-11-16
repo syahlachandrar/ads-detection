@@ -5,26 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
     <title>IG ADS DETECTION</title>
 </head>
 <body>
     <!-- navbar -->
     <nav class="navbar">
-        <img src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image" width="60" height="54">
+        <img src="{{ url_for('static', filename='images/A.png') }}" alt="image" width="60" height="54">
+        {% if 'loggedin' in session %}
+            <span>Selamat Datang, {{ session['username'] }}</span>
+            {% if session['level'] == 'admin' %}
+                <a href="{{ url_for('dashboard_admin') }}">Dashboard Admin</a>
+            {% endif %}
+            <!-- Tombol Logout -->
+            <a href="{{ url_for('auth.logout') }}" class="btn-daftar my-2 my-sm-0">Logout</a>
+        {% else %}
+            <!-- Tombol Daftar jika belum login -->
+            <a href="{{ url_for('auth.registrasi') }}" class="btn-daftar my-2 my-sm-0">Daftar</a>
+        {% endif %}
     </nav>
+    
+    
 
     <!-- section 1 -->
      <div class="hero-section container">
         <div class="hero-tittle">
-            <h1>Nama Sistem</h1>
+            <h1>AdSy<br/>Advertisement Rating System</h1>
         </div>
 
-        <div class="btn-option row align-items-center">
+        <!-- <div class="btn-option row align-items-center">
             <div class="btn-link col"><button type="button" class="btn btn-secondary" id="btn-link"><img src="{{ url_for('static', filename='images/link-45deg.svg') }}" alt=""> Tautan</button>
             </div>
             <div class="btn-link col"><button type="button" class="btn1 btn-secondary" id="btn-image"><img src="{{ url_for('static', filename='images/image.svg') }}" alt=""> Gambar</button>
             </div>
-        </div>
+        </div> -->
 
         <div class="bg-form" id="form-link">
             <form action="/hasil" method="post">
@@ -34,12 +48,12 @@
                 </div>
             </form>
         </div>
-        <div class="bg-form d-none" id="form-image">
+        <!-- <div class="bg-form d-none" id="form-image">
             <div class="input-group">
                 <input type="file" class="form-input" accept="image/*">
                 <button class="btn-check">check</button>
             </div>
-        </div>
+        </div> -->
      </div>
 
      <!-- section 2 -->
@@ -49,7 +63,7 @@
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
         </div>
-        <img class="col" src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image">
+        <img class="col" src="{{ url_for('static', filename='images/B.png') }}" alt="image">
       </div>
 
     <!-- section 3 -->
@@ -57,21 +71,21 @@
         <div class="frame-sect-3">
             <h1>Kenapa Sistem Ini?</h1>
             <div class="reason row">
-                <img class="col" src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image">
+                <img class="col" src="{{ url_for('static', filename='images/B.png') }}" alt="image">
                 <div class="reason-text col">
                     <h3>Lorem Ipsum</h3>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                 </div>
             </div>
             <div class="reason row">
+                <img class="col" src="{{ url_for('static', filename='images/B.png') }}" alt="image">
                 <div class="reason-text col">
                     <h3>Lorem Ipsum</h3>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                 </div>
-                <img class="col" src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image">
             </div>
             <div class="reason row">
-                <img class="col" src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image">
+                <img class="col" src="{{ url_for('static', filename='images/B.png') }}" alt="image">
                 <div class="reason-text col">
                     <h3>Lorem Ipsum</h3>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
@@ -82,10 +96,10 @@
 
      <!-- footer -->
     <div class="footer">
-        <div class="footer-content row">
-            <div class="footer-left col row">
-                <img class="col" src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image">
-                <p class="col">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <div class="footer-content ">
+            <div class="footer-left  ">
+                <img class="" src="{{ url_for('static', filename='images/B.png') }}" alt="image">
+                <p class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
             </div>
             <div class="footer-right col mb-4">
                 <a data-mdb-ripple-init class="btn btn-outline btn-floating m-1" href="#!" role="button">
@@ -105,7 +119,7 @@
     </div>
 
 
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             var btnLink = document.querySelector('.btn');
             var btnImage = document.querySelector('.btn1');
@@ -122,7 +136,7 @@
                 formImage.classList.remove('d-none');
             });
         });
-    </script>
+    </script> -->
     
 </body>
 </html>

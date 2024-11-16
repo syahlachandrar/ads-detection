@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
     <title>Hasil Deteksi Teks</title>
 </head>
 <body>
     <!-- navbar -->
-    <nav class="navbar-result">
-        <img src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image" width="60" height="54">
+    <nav class="navbar">
+        <img src="{{ url_for('static', filename='images/A.png') }}" alt="image" width="60" height="54">
+        <button class="btn-daftar my-2 my-sm-0">Daftar</button>
     </nav>
 
     <!-- section -->
@@ -20,7 +22,13 @@
             <div class="analysis-content">
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Resolusi</strong></p>
-                    <p class="analysis-value">simply dummy text</p>
+                    <p class="analysis-value">
+                        {% if result.get('width') and result.get('height') %}
+                            {{ result.get('width') }} x {{ result.get('height') }}
+                        {% else %}
+                            Tidak tersedia
+                        {% endif %}
+                    </p>
                 </div>
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Judul</strong></p>
@@ -32,19 +40,26 @@
                 </div>
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Headline</strong></p>
-                    <p class="analysis-value">simply dummy text</p>
+                    <p class="analysis-value">{{ headline if headline else 'Tidak ditemukan' }}</p>
                 </div>
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Sub-headline</strong></p>
-                    <p class="analysis-value">simply dummy text</p>
+                    <p class="analysis-value">{{ subheadline if subheadline else 'Tidak ditemukan' }}</p>
                 </div>
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Harga</strong></p>
-                    <p class="analysis-value">simply dummy text</p>
+                    <p class="analysis-value">{{ detected_price if detected_price else 'Tidak ditemukan' }}</p>
                 </div>
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Keunggulan</strong></p>
-                    <p class="analysis-value">simply dummy text</p>
+                    <p class="analysis-value">
+                        {% if rake_keywords %}
+                            {{ rake_keywords[0] | join('  ||  ') }}
+                        {% else %}
+                            Tidak ditemukan
+                        {% endif %}
+                    </p> 
+                    
                 </div>
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Slogan</strong></p>
@@ -61,15 +76,16 @@
                         <span class="icon">
                             <img src="{{ url_for('static', filename='images/komen.png') }}" alt="">
                         </span>
+                        {{ result['following_count'] }} 
                     </p>         
                 </div>
                 <div class="analysis-row">
-                    <p class="analysis-label"><strong>Predict Reach</strong></p>
-                    <p class="analysis-value">{{ predicted_reach }}</p>
+                    <p class="analysis-label"><strong>Reach</strong></p>
+                    <p class="analysis-value">{{ predicted_reach|int }}</p>
                 </div>
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Performance</strong></p>
-                    <p class="analysis-value">90%</p>
+                    <p class="analysis-value">90% (masih dummy)</p>
                 </div>
                 
             </div>
@@ -80,7 +96,7 @@
     <div class="footer">
         <div class="footer-content row">
             <div class="footer-left col row">
-                <img class="col" src="{{ url_for('static', filename='images/logodummy.png') }}" alt="image">
+                <img class="col" src="{{ url_for('static', filename='images/B.png') }}" alt="image">
                 <p class="col">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
             </div>
             <div class="footer-right col mb-4">

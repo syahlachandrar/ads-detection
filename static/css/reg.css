@@ -1,0 +1,71 @@
+:root {
+    --primary-color: #5C59C3;
+    --sec0ndary-color: #EEEDEA;
+    --bg-color100: #2B2A52;
+    --bg-color85: rgba(43, 42, 82, 0.85);
+    --bg-color60: rgba(43, 42, 82, 0.6);
+    --bg-color35: rgba(43, 42, 82, 0.35);
+}
+body{
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color100);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+.rectangle {
+    background-color: white;
+    margin: 100px 30px;
+    padding: 35px;
+}
+
+.rectangle h1 {
+    text-align: center;
+    color: var(--bg-color100);
+    margin-bottom: 15px;
+}
+.label-inp {
+    margin: 20px 0;
+}
+.form-label {
+    color: var(--bg-color100);
+}
+.form-control {
+    border: none;
+    background-color: var(--bg-color35); 
+    border-radius: 0;
+}
+.form-control::placeholder {
+    color: var(--secondary-color); 
+    font-size: 12px;
+}
+
+.text-start a {
+    color: var(--primary-color);
+}
+
+.btn-daftar {
+    background-color: var(--primary-color); 
+    color: white; 
+    border: none; 
+    padding: 7px 20px;
+    font-size: 14px;
+    cursor: pointer; 
+    border-radius: 5px; 
+    text-decoration: none;
+}
+.btn-daftar:hover {
+    background-color: #a8b3ec; /* Warna saat hover */
+}
+.gambar {
+    margin: 0 100px;
+}
+.gambar img {
+    height: 60px;
+    width: auto;
+}
