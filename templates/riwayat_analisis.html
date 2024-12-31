@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <title>Riwayat Analisis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <!-- Gambar logo yang dapat diklik untuk kembali ke halaman utama -->
+        <a href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='images/A.png') }}" alt="image" width="60" height="54">
+        </a>
+        {% if 'loggedin' in session %}
+            <span>Selamat Datang, {{ session['username'] }}</span>
+            {% if session['level'] == 'admin' %}
+                <a href="{{ url_for('dashboard_admin') }}">Dashboard Admin</a>
+            {% endif %}
+            <!-- Tombol Logout -->
+            <a href="{{ url_for('auth.logout') }}" class="btn-daftar my-2 my-sm-0">Logout</a>
+        {% else %}
+            <!-- Tombol Daftar jika belum login -->
+            <a href="{{ url_for('auth.registrasi') }}" class="btn-daftar my-2 my-sm-0">Daftar</a>
+        {% endif %}
+    </nav>
+
+    <!-- riwayat_analisis.html -->
+<div class="container">
+    <h2 class="analysis-title">Riwayat Analisis</h2>
+    <table class="table" border="1">
+        <thead>
+            <tr>
+                <th class="col-no">No</th>
+                <th class="col-url">URL</th>
+                <th class="col-headline">Headline</th>
+                <th class="col-subheadline">Subheadline</th>
+                <th class="col-harga">Harga Terdeteksi</th>
+                <th class="col-jangkauan">Prediksi Jangkauan</th>
+                <th class="col-keywords">Rake Keywords</th>
+                <th class="col-like">Jumlah Like</th>
+                <th class="col-komentar">Jumlah Komentar</th>
+                <th class="col-tanggal">Tanggal Dibuat</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            {% for hasil in hasil_data %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><a href="{{ hasil[1] }}" target="_blank">{{ hasil[1] }}</a></td> <!-- Menampilkan URL -->
+                <td>{{ hasil[2] }}</td> <!-- Headline -->
+                <td>{{ hasil[3] }}</td> <!-- Subheadline -->
+                <td>{{ hasil[4] }}</td> <!-- Harga Terdeteksi -->
+                <td>{{ hasil[5] }}</td> <!-- Prediksi Jangkauan -->
+                <td>{{ hasil[6] }}</td> <!-- Rake Keywords -->
+                <td>{{ hasil[7] }}</td> <!-- Jumlah Like -->
+                <td>{{ hasil[8] }}</td> <!-- Jumlah Komentar -->
+                <td>{{ hasil[9] }}</td> <!-- Tanggal Dibuat -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

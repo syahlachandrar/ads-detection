@@ -52,26 +52,20 @@ def login():
         cursor = mysql.connection.cursor()
         cursor.execute('SELECT * FROM tb_users WHERE email=%s', (email,))
         akun = cursor.fetchone()
-        if akun is None:
-            flash('Login Gagal, Cek Username Anda', 'danger')
-        elif not check_password_hash(akun[3], password):
-            flash('Login gagal, Cek Password Anda', 'danger')
+
+        if akun is None or not check_password_hash(akun[3], password):
+            flash('Username atau password salah! Cek kembali', 'danger')  # Tampilkan alert
+            return redirect(url_for('auth.login')) 
+
+        # Jika login berhasil
+        session['loggedin'] = True
+        session['username'] = akun[1]
+        session['level'] = akun[4]
+        if session['level'] == 'Admin':
+            return redirect(url_for('dashboard_admin'))
         else:
-            session['loggedin'] = True
-            session['username'] = akun[1]
-            session['level'] = akun[4]
-            
-            # Debugging: cek session level
-            print(session)
-
-            # Jika level pengguna adalah Admin, arahkan ke halaman dashboard-admin
-            if session['level'] == 'admin':
-                return redirect(url_for('dashboard_admin'))  # Arahkan admin ke dashboard admin
-            else:
-                return redirect(url_for('home'))  # Arahkan pengguna biasa ke halaman home
+            return redirect(url_for('home'))  # Arahkan pengguna biasa ke halaman home
     return render_template('login.html')
-
-
 
 # Logout route
 @auth.route('/logout')

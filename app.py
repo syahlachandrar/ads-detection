@@ -10,11 +10,11 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import PassiveAggressiveRegressor
-from controllers import add_user, edit_user, delete_user
+from controllers import add_user, edit_user, delete_user, add_hasil,  get_all_hasil
 from scrape import scrape_instagram_post
 from tf_idf import extract_top_keywords_tfidf, extract_top_keywords_rake
 from headline_sub import extract_headline_subheadline, detect_price
-
+import re
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -26,6 +26,8 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'flask_project'
+app.config['MYSQL_CHARSET'] = 'utf8mb4'
+
 
 # Register the blueprint
 app.register_blueprint(auth)
@@ -43,6 +45,12 @@ xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.25, random_sta
 # Melatih model PassiveAggressiveRegressor
 model = PassiveAggressiveRegressor()
 model.fit(xtrain, ytrain)
+
+
+def clean_list(data):
+    # Meratakan list dari list menjadi list tunggal
+    flat_list = [item for sublist in data for item in sublist]  # Flatten the list
+    return [re.sub(r'[^\x00-\x7F]+', '', str(item)) for item in flat_list]
 
 @app.route('/')
 def home():
@@ -62,29 +70,86 @@ def hasil():
     # Ekstraksi headline dan subheadline
     headline, subheadline = extract_headline_subheadline(caption)
 
-    # Ekstraksi keywords dengan TF-IDF
-    top_keywords_tfidf = extract_top_keywords_tfidf([caption])
-    
     # Ekstraksi keywords dengan RAKE
     top_keywords_rake = extract_top_keywords_rake([caption])
     
     # Deteksi harga pada caption
     detected_price = detect_price(caption)
-    
+
     # Prediksi jangkauan (reach)
     predicted_reach = predict_reach(scraped_data)
+
+    # Ambil jumlah like dan komentar dari hasil scraping
+    like_count = scraped_data['like_count']
+    comment_count = scraped_data['comment_count']
     
+    # Tambahkan hasil ke database
+    add_hasil(
+        mysql, 
+        url, 
+        headline, 
+        subheadline, 
+        detected_price, 
+        predicted_reach, 
+        top_keywords_rake,  # Menggunakan Rake keywords
+        like_count,  # Menambahkan like_count
+        comment_count  # Menambahkan comment_count
+    )
+
     # Tampilkan hasil di halaman hasil.html
     return render_template(
         'hasil.html', 
         result=scraped_data, 
-        predicted_reach=predicted_reach,
-        headline=headline,
-        subheadline=subheadline,
-        rake_keywords=top_keywords_rake,
-        detected_price=detected_price
     )
 
+
+@app.route('/hasil_analisis', methods=['GET'])
+def hasil_analisis():
+    # Ambil URL dari query string
+    url = request.args.get('url')
+    
+    # Scrape data dari URL Instagram
+    scraped_data = scrape_instagram_post(url)
+    
+    # Ambil caption untuk dianalisis
+    caption = scraped_data['caption']
+    
+    # Ekstraksi headline dan subheadline
+    headline, subheadline = extract_headline_subheadline(caption)
+
+    # Ekstraksi keywords dengan RAKE
+    rake_keywords = extract_top_keywords_rake([caption])
+    
+    # Deteksi harga pada caption
+    detected_price = detect_price(caption)
+
+    # Prediksi jangkauan (reach)
+    predicted_reach = predict_reach(scraped_data)
+
+    # Kirim data ke halaman hasil_analisis.html
+    return render_template(
+        'hasil_analis.html', 
+        headline=headline, 
+        subheadline=subheadline,
+        detected_price=detected_price,
+        rake_keywords=rake_keywords,
+        predicted_reach=predicted_reach
+    )
+
+
+    # Tampilkan hasil di halaman hasil_analisis.html
+    return render_template(
+        'hasil_analis.html', 
+        result=result
+    )
+
+@app.route('/riwayat_analisis')
+def riwayat_analisis():
+    # Ambil data riwayat analisis dari database
+    hasil_data = get_all_hasil(mysql)
+    
+    # Kirim data ke template untuk ditampilkan dalam tabel
+    return render_template('riwayat_analisis.html', hasil_data=hasil_data)
 
 @app.route('/dashboardadmin', methods=['GET', 'POST'])
 def dashboard_admin():
@@ -120,6 +185,7 @@ def edit_user_route(user_id):
 def delete_user_route(user_id):
     print(f'Method: {request.method}, User ID: {user_id}')  # Tambahkan ini untuk debugging
     return delete_user(user_id, mysql)
+
 
 
 def predict_reach(scraped_data):

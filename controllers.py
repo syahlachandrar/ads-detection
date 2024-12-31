@@ -1,8 +1,15 @@
 from flask import request, redirect, url_for, flash, render_template
 from werkzeug.security import generate_password_hash
+import re
+import json
 
-from flask import request, render_template, redirect, url_for, flash
-from werkzeug.security import generate_password_hash
+
+def clean_list(data):
+    # Jika data adalah list of lists, ratakan terlebih dahulu
+    if isinstance(data[0], list):
+        data = [item for sublist in data for item in sublist]
+    return [re.sub(r'[^\x00-\x7F]+', '', item) for item in data] 
+
 
 def add_user(mysql):
     if request.method == 'POST':
@@ -77,3 +84,38 @@ def delete_user(user_id, mysql):
 
     # Jika pengguna tidak ditemukan, kembali ke dashboard admin sebagai fallback
     return redirect(url_for('dashboard_admin'))
+
+# tAbel hasill
+def add_hasil(mysql, url, headline, subheadline, detected_price, predicted_reach, rake_keywords, like_count, comment_count):
+    # Pastikan rake_keywords dalam format string
+    rake_keywords_cleaned = ', '.join([str(item) for item in rake_keywords]) if isinstance(rake_keywords, list) else str(rake_keywords)
+    
+    # Pastikan headline dan subheadline adalah string
+    headline = str(headline) if headline else ""
+    subheadline = str(subheadline) if subheadline else ""
+    
+    try:
+        # Query untuk memasukkan data ke database
+        cursor = mysql.connection.cursor()
+        cursor.execute('''INSERT INTO tb_hasil (url, headline, subheadline, detected_price, 
+                          predicted_reach, rake_keywords, like_count, comment_count, created_at) 
+                          VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW())''', 
+                       (url, headline, subheadline, detected_price, 
+                        predicted_reach, rake_keywords_cleaned, like_count, comment_count))
+
+        mysql.connection.commit()  # Simpan perubahan ke database
+        cursor.close()
+        print("Data berhasil disimpan ke database.")
+    except Exception as e:
+        print(f"Terjadi kesalahan saat menyimpan ke database: {e}")
+
+
+def get_all_hasil(mysql):
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM tb_hasil ORDER BY created_at DESC")
+    results = cursor.fetchall()
+    cursor.close()
+    return results
+
+
+

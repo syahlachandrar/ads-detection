@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
-    <title>Hasil Deteksi Teks</title>
+    <title>Hasil Analis</title>
 </head>
 <body>
     <!-- navbar -->
@@ -27,32 +27,61 @@
             <a href="{{ url_for('auth.registrasi') }}" class="btn-daftar my-2 my-sm-0">Daftar</a>
         {% endif %}
     </nav>
-    
 
     <!-- section -->
     <div class="container-analysis">
         <h1 class="analysis-title">hasil analisis</h1>
         <div class="analysis-box">
             <div class="analysis-content">
-                
-                <div class="analysis-row">
-                    <p class="analysis-label"><strong>Engagement</strong></p>
+                <!-- <div class="analysis-row">
+                    <p class="analysis-label"><strong>Resolusi</strong></p>
                     <p class="analysis-value">
-                        {{ result['like_count'] }} 
-                        <span class="icon">
-                            <img src="{{ url_for('static', filename='images/like.png') }}" alt="">
-                        </span>
-                        {{ result['comment_count'] }} 
-                        <span class="icon">
-                            <img src="{{ url_for('static', filename='images/komen.png') }}" alt="">
-                        </span>
                         
-                    </p>         
+                    </p>
                 </div>
-                
-                <a href="{{ url_for('hasil_analisis', url=request.form['url']) }}">
-                    <button class="btn-check">Lihat Hasil Analisis</button>
-                </a>
+                <div class="analysis-row">
+                    <p class="analysis-label"><strong>Judul</strong></p>
+                    <p class="analysis-value">simply dummy text</p>
+                </div>
+                <div class="analysis-row">
+                    <p class="analysis-label"><strong>Sub-judul</strong></p>
+                    <p class="analysis-value">simply dummy text</p>
+                </div> -->
+                <div class="analysis-row">
+                    <p class="analysis-label"><strong>Headline</strong></p>
+                    <p class="analysis-value">{{ headline if headline else 'Tidak ditemukan' }}</p>
+                </div>
+                <div class="analysis-row">
+                    <p class="analysis-label"><strong>Sub-headline</strong></p>
+                    <p class="analysis-value">{{ subheadline if subheadline else 'Tidak ditemukan' }}</p>
+                </div>
+                <div class="analysis-row">
+                    <p class="analysis-label"><strong>Harga</strong></p>
+                    <p class="analysis-value">{{ detected_price if detected_price else 'Tidak ditemukan' }}</p>
+                </div>
+                <div class="analysis-row">
+                    <p class="analysis-label"><strong>Keunggulan</strong></p>
+                    <p class="analysis-value">
+                        {% if rake_keywords %}
+                            {{ rake_keywords[0] | join('   ||   ') }}
+                        {% else %}
+                            Tidak ditemukan
+                        {% endif %}
+                    </p> 
+                    
+                </div>
+                <!-- <div class="analysis-row">
+                    <p class="analysis-label"><strong>Logo</strong></p>
+                    <p class="analysis-value">simply dummy text</p>
+                </div> -->
+                <div class="analysis-row">
+                    <p class="analysis-label"><strong>Reach</strong></p>
+                    <p class="analysis-value">{{ predicted_reach|int }}</p>
+                </div>
+                <div class="analysis-row">
+                    <p class="analysis-label"><strong>Performance</strong></p>
+                    <p class="analysis-value">90% (masih dummy)</p>
+                </div>
                 
             </div>
         </div>

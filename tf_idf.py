@@ -31,5 +31,6 @@ def extract_top_keywords_rake(captions, top_n=2):
     keywords = []
     for caption in captions:
         rake_nltk_var.extract_keywords_from_text(caption)
-        keywords.append(rake_nltk_var.get_ranked_phrases()[:top_n])  # Ambil top N phrases
-    return keywords
+        keywords.append(rake_nltk_var.get_ranked_phrases()[:top_n])  # Mengembalikan list of lists
+    return keywords  # Ini bisa jadi list of list, jadi Anda perlu mengubahnya jadi string
+

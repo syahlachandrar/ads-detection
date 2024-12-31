@@ -15,6 +15,18 @@ body{
     font-family:'Poppins', sans-serif;
 }
 
+.col-no { width: 5%; }
+.col-url { width: 15%; }
+.col-headline { width: 15%; }
+.col-subheadline { width: 15%; }
+.col-harga { width: 10%; }
+.col-jangkauan { width: 10%; }
+.col-keywords { width: 15%; }
+.col-like { width: 10%; }
+.col-komentar { width: 10%; }
+.col-tanggal { width: 10%; }
+
+
 .navbar {
     display: flex;
     flex-direction: row;
@@ -126,6 +138,13 @@ button.btn1 img {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.226);
     align-items: center; /* Menyelaraskan secara vertikal ke tengah */
     padding: 40px 30px;
+}
+.riwayat {
+    align-items: center;
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    
 }
 .input-group {
     border: 2px solid var(--primary-color); /* Border berwarna primary */

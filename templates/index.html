@@ -11,7 +11,10 @@
 <body>
     <!-- navbar -->
     <nav class="navbar">
-        <img src="{{ url_for('static', filename='images/A.png') }}" alt="image" width="60" height="54">
+        <!-- Gambar logo yang dapat diklik untuk kembali ke halaman utama -->
+        <a href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='images/A.png') }}" alt="image" width="60" height="54">
+        </a>
         {% if 'loggedin' in session %}
             <span>Selamat Datang, {{ session['username'] }}</span>
             {% if session['level'] == 'admin' %}
@@ -47,6 +50,11 @@
                     <button type="submit" class="btn-check">check</button>
                 </div>
             </form>
+        </div>
+        <div class="riwayat">
+            <a href="{{ url_for('riwayat_analisis') }}" class="btn btn-secondary my-2 my-sm-0 riwayat">
+                <button class="btn-check">Lihat Riwayat Analisis</button>
+            </a>
         </div>
         <!-- <div class="bg-form d-none" id="form-image">
             <div class="input-group">
