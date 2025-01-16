@@ -35,6 +35,7 @@ def detect_price(caption):
     # Pola regex untuk mendeteksi harga
     price_patterns = [
         r'(?<![\w])Rp\s?[\d.,]+(?![\w])',            # Format "Rp 1.000.000" atau "Rp1000000"
+        r'(?<![\w])Rp.\s?[\d.,]+(?![\w])', 
         r'(?<![\w])IDR\s?[\d.,]+(?![\w])',           # Format "IDR 1.000.000"
         r'(?<![\w])\$\s?[\d.,]+(?![\w])',            # Format "$1000" atau "$ 1,000.00"
         r'(?<![\w])[\d.]+(?:k|K|ribu)(?![\w])',      # Format "100k" atau "100 ribu"

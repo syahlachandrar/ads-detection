@@ -76,12 +76,25 @@
                 </div> -->
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Reach</strong></p>
-                    <p class="analysis-value">{{ predicted_reach|int }}</p>
+                    <p class="analysis-value">{{ predicted_reach|int }} orang</p>
                 </div>
                 <div class="analysis-row">
                     <p class="analysis-label"><strong>Performance</strong></p>
-                    <p class="analysis-value">90% (masih dummy)</p>
+                    <p class="analysis-value">{{ performance|round(2) }}%</p>
                 </div>
+                <div class="analysis-row">
+                    <p class="analysis-label"><strong>Kesimpulan</strong></p>
+                    <p class="analysis-value">
+                        {% if performance >= 80 %}
+                            Analisis menunjukkan bahwa iklan ini sangat efektif dan memenuhi sebagian besar elemen penting untuk menarik perhatian audiens.
+                        {% elif performance >= 60 %}
+                            Iklan ini cukup efektif, namun masih ada beberapa elemen yang dapat ditingkatkan untuk performa lebih optimal.
+                        {% else %}
+                            Iklan ini kurang efektif, beberapa elemen penting tidak ditemukan atau kurang memenuhi standar yang diharapkan.
+                        {% endif %}
+                    </p>
+                </div>
+                
                 
             </div>
         </div>

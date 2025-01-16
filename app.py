@@ -15,6 +15,10 @@ from scrape import scrape_instagram_post
 from tf_idf import extract_top_keywords_tfidf, extract_top_keywords_rake
 from headline_sub import extract_headline_subheadline, detect_price
 import re
+import matplotlib.pyplot as plt
+import io
+import base64
+import plotly.express as px
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -52,9 +56,34 @@ def clean_list(data):
     flat_list = [item for sublist in data for item in sublist]  # Flatten the list
     return [re.sub(r'[^\x00-\x7F]+', '', str(item)) for item in flat_list]
 
+def fetch_data_for_chart():
+    # Fetch data from the database (performance and predicted_reach columns)
+    cursor = mysql.connection.cursor()
+    query = "SELECT performance, predicted_reach FROM tb_hasil"
+    cursor.execute(query)
+    data = cursor.fetchall()  # Fetch all rows
+    cursor.close()
+    return data
+
 @app.route('/')
 def home():
-    return render_template('index.html')
+    # Fetch data for the chart from tb_hasil
+    data = fetch_data_for_chart()
+    
+    # Convert data to pandas DataFrame for easier manipulation
+    df = pd.DataFrame(data, columns=['Performance','Predicted Reach'])
+
+    # Create a Plotly horizontal bar chart
+    fig = px.bar(df, y='Performance', x='Predicted Reach', 
+                 labels={'Performance': 'Performance (%)', 'Predicted Reach': 'Predicted Reach'},
+                 title='Predicted Reach vs Performance',
+                 orientation='v', range_x=[0, 100000] )  # Set orientation to horizontal
+    
+    # Generate the HTML div to render the Plotly chart
+    chart_html = fig.to_html(full_html=False)
+
+    # Render the chart in the template
+    return render_template('index.html', chart_html=chart_html)
 
 @app.route('/hasil', methods=['POST'])
 def hasil():
@@ -82,6 +111,29 @@ def hasil():
     # Ambil jumlah like dan komentar dari hasil scraping
     like_count = scraped_data['like_count']
     comment_count = scraped_data['comment_count']
+
+        # Definisikan bobot elemen
+    weights = {
+        "headline": 0.25,
+        "subheadline": 0.20,
+        "price": 0.20,
+        "advantages": 0.20,
+        "reach": 0.15,
+    }
+
+    # Hitung nilai setiap elemen
+    values = {
+        "headline": 1 if headline else 0,
+        "subheadline": 1 if subheadline else 0,
+        "price": 1 if detected_price else 0,
+        "advantages": 1 if top_keywords_rake else 0,
+        "reach": 1 if predicted_reach >= 10000 else 0, 
+    }
+
+    # Hitung skor performa
+    performance_score = sum(values[element] * weights[element] for element in values)
+    performance_percentage = performance_score * 100
+
     
     # Tambahkan hasil ke database
     add_hasil(
@@ -93,7 +145,8 @@ def hasil():
         predicted_reach, 
         top_keywords_rake,  # Menggunakan Rake keywords
         like_count,  # Menambahkan like_count
-        comment_count  # Menambahkan comment_count
+        comment_count, # Menambahkan comment_count
+        performance_percentage
     )
 
     # Tampilkan hasil di halaman hasil.html
@@ -101,7 +154,6 @@ def hasil():
         'hasil.html', 
         result=scraped_data, 
     )
-
 
 @app.route('/hasil_analisis', methods=['GET'])
 def hasil_analisis():
@@ -126,6 +178,28 @@ def hasil_analisis():
     # Prediksi jangkauan (reach)
     predicted_reach = predict_reach(scraped_data)
 
+    # Definisikan bobot elemen
+    weights = {
+        "headline": 0.25,
+        "subheadline": 0.20,
+        "price": 0.20,
+        "advantages": 0.20,
+        "reach": 0.15,
+    }
+
+    # Hitung nilai setiap elemen
+    values = {
+        "headline": 1 if headline else 0,
+        "subheadline": 1 if subheadline else 0,
+        "price": 1 if detected_price else 0,
+        "advantages": 1 if rake_keywords else 0,
+        "reach": 1 if predicted_reach >= 10000 else 0, 
+    }
+
+    # Hitung skor performa
+    performance_score = sum(values[element] * weights[element] for element in values)
+    performance_percentage = performance_score * 100
+
     # Kirim data ke halaman hasil_analisis.html
     return render_template(
         'hasil_analis.html', 
@@ -133,15 +207,10 @@ def hasil_analisis():
         subheadline=subheadline,
         detected_price=detected_price,
         rake_keywords=rake_keywords,
-        predicted_reach=predicted_reach
+        predicted_reach=predicted_reach,
+        performance=performance_percentage
     )
 
-
-    # Tampilkan hasil di halaman hasil_analisis.html
-    return render_template(
-        'hasil_analis.html', 
-        result=result
-    )
 
 @app.route('/riwayat_analisis')
 def riwayat_analisis():

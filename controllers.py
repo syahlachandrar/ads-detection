@@ -86,7 +86,7 @@ def delete_user(user_id, mysql):
     return redirect(url_for('dashboard_admin'))
 
 # tAbel hasill
-def add_hasil(mysql, url, headline, subheadline, detected_price, predicted_reach, rake_keywords, like_count, comment_count):
+def add_hasil(mysql, url, headline, subheadline, detected_price, predicted_reach, rake_keywords, like_count, comment_count,performance):
     # Pastikan rake_keywords dalam format string
     rake_keywords_cleaned = ', '.join([str(item) for item in rake_keywords]) if isinstance(rake_keywords, list) else str(rake_keywords)
     
@@ -98,10 +98,10 @@ def add_hasil(mysql, url, headline, subheadline, detected_price, predicted_reach
         # Query untuk memasukkan data ke database
         cursor = mysql.connection.cursor()
         cursor.execute('''INSERT INTO tb_hasil (url, headline, subheadline, detected_price, 
-                          predicted_reach, rake_keywords, like_count, comment_count, created_at) 
-                          VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW())''', 
+                          predicted_reach, rake_keywords, like_count, comment_count, performance, created_at) 
+                          VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW())''', 
                        (url, headline, subheadline, detected_price, 
-                        predicted_reach, rake_keywords_cleaned, like_count, comment_count))
+                        predicted_reach, rake_keywords_cleaned, like_count, comment_count, performance))
 
         mysql.connection.commit()  # Simpan perubahan ke database
         cursor.close()
